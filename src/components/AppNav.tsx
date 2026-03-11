@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/auth-context";
-import { LogOut, User, Search, Bookmark, Briefcase, Calendar } from "lucide-react";
+import { LogOut, User, Search, Bookmark, Briefcase, Calendar, Activity } from "lucide-react";
 
 const AppNav = () => {
   const { role, logout } = useAuth();
@@ -18,6 +18,7 @@ const AppNav = () => {
     { name: "Saved", path: "/scout/saved", icon: Bookmark },
     { name: "Posts", path: "/scout/posts", icon: Briefcase },
     { name: "Events", path: "/scout/events", icon: Calendar },
+    { name: "Analytics", path: "/scout/analytics", icon: Activity },
   ];
 
   const links = role === "player" ? playerLinks : scoutLinks;

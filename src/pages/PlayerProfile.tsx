@@ -1,11 +1,23 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import AppNav from "@/components/AppNav";
-import { mockPlayer } from "@/lib/mock-data";
-import { Eye, Play, Pin, Trophy, Shield, Users, MapPin, Calendar, GraduationCap, Ruler, Weight } from "lucide-react";
+import { mockPlayer, mockJobPosts, JobPost } from "@/lib/mock-data";
+import { Eye, Play, Pin, Trophy, Shield, Users, MapPin, Calendar, GraduationCap, Ruler, Weight, Briefcase } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import ApplyModal from "@/components/ApplyModal";
 
 const PlayerProfile = () => {
   const p = mockPlayer;
+  const [selectedJob, setSelectedJob] = useState<JobPost | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const matchedJobs = mockJobPosts.filter(job => job.position === p.position);
+
+  const handleApply = (job: JobPost) => {
+    setSelectedJob(job);
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -220,25 +232,39 @@ const PlayerProfile = () => {
               className="glass-card p-6"
             >
               <h2 className="font-display text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                Matched Jobs
+                <Briefcase className="w-5 h-5 text-primary" /> Matched Jobs
               </h2>
-              <p className="text-xs text-muted-foreground mb-3">Jobs matching your position and year</p>
-              <div className="space-y-2">
-                <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
-                  <div className="text-sm font-medium text-foreground">Looking for 2026 CAM/Winger</div>
-                  <div className="text-xs text-primary">Stanford University</div>
-                  <div className="text-xs text-muted-foreground mt-1">2 days ago</div>
-                </div>
-                <div className="bg-secondary/30 rounded-lg p-3">
-                  <div className="text-sm font-medium text-foreground">Striker / Forward - Class of 2026</div>
-                  <div className="text-xs text-muted-foreground">University of Virginia</div>
-                  <div className="text-xs text-muted-foreground mt-1">1 week ago</div>
-                </div>
+              <p className="text-xs text-muted-foreground mb-3">Jobs matching your position and age</p>
+              <div className="space-y-3">
+                {matchedJobs.map((job) => (
+                  <div key={job.id} className="bg-secondary/30 rounded-lg p-3 border border-border/50">
+                    <div className="text-sm font-medium text-foreground">{job.title}</div>
+                    <div className="text-xs text-primary">{job.org}</div>
+                    <div className="flex items-center justify-between mt-2">
+                      <div className="text-[10px] text-muted-foreground">{job.date}</div>
+                      <button 
+                        onClick={() => handleApply(job)}
+                        className="text-[10px] font-display font-bold text-primary hover:underline"
+                      >
+                        Apply Now
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                {matchedJobs.length === 0 && (
+                  <div className="text-xs text-muted-foreground text-center py-4">No direct matches found</div>
+                )}
               </div>
             </motion.div>
           </div>
         </div>
       </div>
+
+      <ApplyModal 
+        job={selectedJob}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };

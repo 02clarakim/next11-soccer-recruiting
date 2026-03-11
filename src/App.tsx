@@ -13,6 +13,8 @@ import ScoutDiscover from "./pages/ScoutDiscover";
 import ScoutSaved from "./pages/ScoutSaved";
 import ScoutPosts from "./pages/ScoutPosts";
 import ScoutEvents from "./pages/ScoutEvents";
+import ScoutPlayerView from "./pages/ScoutPlayerView";
+import ScoutAnalytics from "./pages/ScoutAnalytics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +38,8 @@ const AppRoutes = () => {
       <Route path="/scout/saved" element={<ProtectedRoute requiredRole="scout"><ScoutSaved /></ProtectedRoute>} />
       <Route path="/scout/posts" element={<ProtectedRoute requiredRole="scout"><ScoutPosts /></ProtectedRoute>} />
       <Route path="/scout/events" element={<ProtectedRoute requiredRole="scout"><ScoutEvents /></ProtectedRoute>} />
+      <Route path="/scout/player/:id" element={<ProtectedRoute requiredRole="scout"><ScoutPlayerView /></ProtectedRoute>} />
+      <Route path="/scout/analytics" element={<ProtectedRoute requiredRole="scout"><ScoutAnalytics /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

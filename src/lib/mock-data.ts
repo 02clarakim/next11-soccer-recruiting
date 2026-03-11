@@ -18,6 +18,14 @@ export interface Player {
     goals: number;
     assists: number;
   }[];
+  technicalStats: {
+    speed: number;
+    dribbling: number;
+    shooting: number;
+    passing: number;
+    defense: number;
+    physical: number;
+  };
   videos: {
     id: string;
     title: string;
@@ -47,9 +55,10 @@ export interface JobPost {
   title: string;
   description: string;
   position: string;
-  year: string;
+  targetAges: string;
   location: string;
   date: string;
+  postedAt: string;
 }
 
 export interface Event {
@@ -80,6 +89,14 @@ export const mockPlayer: Player = {
     { season: "2024-25", gamesPlayed: 20, goals: 11, assists: 15 },
     { season: "2023-24", gamesPlayed: 18, goals: 8, assists: 12 },
   ],
+  technicalStats: {
+    speed: 85,
+    dribbling: 92,
+    shooting: 88,
+    passing: 95,
+    defense: 45,
+    physical: 70,
+  },
   videos: [
     { id: "v1", title: "Senior Year Highlights", url: "#", views: 1247, isPinned: true },
     { id: "v2", title: "State Championship Final", url: "#", views: 892, isPinned: false },
@@ -129,6 +146,14 @@ export const mockPlayers: Player[] = [
     stats: [
       { season: "2025-26", gamesPlayed: 19, goals: 2, assists: 9 },
     ],
+    technicalStats: {
+      speed: 90,
+      dribbling: 82,
+      shooting: 65,
+      passing: 85,
+      defense: 88,
+      physical: 78,
+    },
     videos: [
       { id: "v4", title: "Defensive Highlights", url: "#", views: 567, isPinned: true },
     ],
@@ -155,6 +180,14 @@ export const mockPlayers: Player[] = [
     stats: [
       { season: "2025-26", gamesPlayed: 21, goals: 22, assists: 6 },
     ],
+    technicalStats: {
+      speed: 92,
+      dribbling: 85,
+      shooting: 95,
+      passing: 75,
+      defense: 35,
+      physical: 82,
+    },
     videos: [
       { id: "v5", title: "22 Goals in 21 Games", url: "#", views: 2103, isPinned: true },
     ],
@@ -181,6 +214,14 @@ export const mockPlayers: Player[] = [
     stats: [
       { season: "2025-26", gamesPlayed: 20, goals: 3, assists: 11 },
     ],
+    technicalStats: {
+      speed: 78,
+      dribbling: 80,
+      shooting: 72,
+      passing: 90,
+      defense: 92,
+      physical: 85,
+    },
     videos: [
       { id: "v6", title: "Midfield Masterclass", url: "#", views: 891, isPinned: true },
     ],
@@ -207,6 +248,14 @@ export const mockPlayers: Player[] = [
     stats: [
       { season: "2025-26", gamesPlayed: 22, goals: 0, assists: 1 },
     ],
+    technicalStats: {
+      speed: 65,
+      dribbling: 40,
+      shooting: 30,
+      passing: 82,
+      defense: 95,
+      physical: 90,
+    },
     videos: [
       { id: "v7", title: "Save Compilation", url: "#", views: 1567, isPinned: true },
     ],
@@ -226,9 +275,10 @@ export const mockJobPosts: JobPost[] = [
     title: "Looking for 2026 CAM/Winger",
     description: "Need a creative, two-footed attacking player who can play centrally or out wide. Must have strong academics.",
     position: "CAM",
-    year: "2026",
+    targetAges: "17-18",
     location: "Palo Alto, CA",
     date: "2 days ago",
+    postedAt: "2026-03-09",
   },
   {
     id: "j2",
@@ -237,9 +287,10 @@ export const mockJobPosts: JobPost[] = [
     title: "2027 Left-Back Needed",
     description: "Seeking an athletic, technical left-back with strong defensive awareness and ability to get forward.",
     position: "LB",
-    year: "2027",
+    targetAges: "16-17",
     location: "Los Angeles, CA",
     date: "5 days ago",
+    postedAt: "2026-03-06",
   },
   {
     id: "j3",
@@ -248,9 +299,10 @@ export const mockJobPosts: JobPost[] = [
     title: "Striker / Forward - Class of 2026",
     description: "High-pressing striker with pace and finishing ability. Must be comfortable leading the line alone.",
     position: "ST",
-    year: "2026",
+    targetAges: "17-18",
     location: "Charlottesville, VA",
     date: "1 week ago",
+    postedAt: "2026-03-04",
   },
 ];
 

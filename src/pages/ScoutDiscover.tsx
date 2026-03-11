@@ -1,18 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import AppNav from "@/components/AppNav";
 import PlayerCard from "@/components/PlayerCard";
 import { mockPlayers } from "@/lib/mock-data";
 import { Filter, Eye } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const positions = ["All", "CAM", "ST", "LB", "CDM", "GK", "CB", "RW", "LW"];
 const years = ["All", "2025", "2026", "2027"];
 const sortOptions = ["Newest", "Most Viewed"];
 
 const ScoutDiscover = () => {
+  const navigate = useNavigate();
   const [posFilter, setPosFilter] = useState("All");
   const [yearFilter, setYearFilter] = useState("All");
   const [sort, setSort] = useState("Newest");
+  const [savedIds, setSavedIds] = useState<string[]>([]);
+
+  // Load saved IDs from localStorage for persistence during session
+  useEffect(() => {
+    const saved = localStorage.getItem("scout_saved_players");
+    if (saved) setSavedIds(JSON.parse(saved));
+  }, []);
+
+  const handleSave = (id: string) => {
+    setSavedIds(prev => {
+      const newSaved = prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id];
+      localStorage.setItem("scout_saved_players", JSON.stringify(newSaved));
+      return newSaved;
+    });
+  };
 
   const filtered = mockPlayers
     .filter((p) => posFilter === "All" || p.position === posFilter)
@@ -93,7 +110,12 @@ const ScoutDiscover = () => {
               transition={{ delay: i * 0.1 }}
               className="flex flex-col md:flex-row gap-6 items-start"
             >
-              <PlayerCard player={player} />
+              <PlayerCard 
+                player={player} 
+                onViewProfile={(id) => navigate(`/scout/player/${id}`)}
+                onSave={handleSave}
+                isSaved={savedIds.includes(player.id)}
+              />
               
               {/* Pinned Video */}
               <div className="flex-1 w-full">
