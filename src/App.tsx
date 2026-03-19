@@ -9,6 +9,7 @@ import Landing from "./pages/Landing";
 import PlayerProfile from "./pages/PlayerProfile";
 import PlayerJobs from "./pages/PlayerJobs";
 import PlayerEvents from "./pages/PlayerEvents";
+import PlayerRoadmap from "./pages/PlayerRoadmap";
 import ScoutDiscover from "./pages/ScoutDiscover";
 import ScoutSaved from "./pages/ScoutSaved";
 import ScoutPosts from "./pages/ScoutPosts";
@@ -34,6 +35,7 @@ const AppRoutes = () => {
       <Route path="/player/profile" element={<ProtectedRoute requiredRole="player"><PlayerProfile /></ProtectedRoute>} />
       <Route path="/player/jobs" element={<ProtectedRoute requiredRole="player"><PlayerJobs /></ProtectedRoute>} />
       <Route path="/player/events" element={<ProtectedRoute requiredRole="player"><PlayerEvents /></ProtectedRoute>} />
+      <Route path="/player/roadmap" element={<ProtectedRoute requiredRole="player"><PlayerRoadmap /></ProtectedRoute>} />
       <Route path="/scout/discover" element={<ProtectedRoute requiredRole="scout"><ScoutDiscover /></ProtectedRoute>} />
       <Route path="/scout/saved" element={<ProtectedRoute requiredRole="scout"><ScoutSaved /></ProtectedRoute>} />
       <Route path="/scout/posts" element={<ProtectedRoute requiredRole="scout"><ScoutPosts /></ProtectedRoute>} />

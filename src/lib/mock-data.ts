@@ -38,6 +38,7 @@ export interface Player {
   coachReferences: { name: string; contact: string }[];
   profileViews: number;
   scoutViews: { scoutName: string; org: string; date: string }[];
+  gpa: number;
 }
 
 export interface Scout {
@@ -125,6 +126,7 @@ export const mockPlayer: Player = {
     { scoutName: "James Wright", org: "Duke University", date: "3 days ago" },
     { scoutName: "Ana Gomez", org: "UNC Chapel Hill", date: "1 week ago" },
   ],
+  gpa: 3.8,
 };
 
 export const mockPlayers: Player[] = [
@@ -162,6 +164,7 @@ export const mockPlayers: Player[] = [
     coachReferences: [{ name: "Coach Rivera", contact: "rivera@cghs.edu" }],
     profileViews: 1890,
     scoutViews: [],
+    gpa: 3.2,
   },
   {
     id: "p3",
@@ -196,6 +199,7 @@ export const mockPlayers: Player[] = [
     coachReferences: [{ name: "Coach Tanaka", contact: "tanaka@lakeside.edu" }],
     profileViews: 4521,
     scoutViews: [],
+    gpa: 3.5,
   },
   {
     id: "p4",
@@ -230,6 +234,7 @@ export const mockPlayers: Player[] = [
     coachReferences: [{ name: "Coach Hernandez", contact: "hernandez@mhs.edu" }],
     profileViews: 2134,
     scoutViews: [],
+    gpa: 3.9,
   },
   {
     id: "p5",
@@ -264,6 +269,7 @@ export const mockPlayers: Player[] = [
     coachReferences: [{ name: "Coach Barrett", contact: "barrett@cchs.edu" }],
     profileViews: 3012,
     scoutViews: [],
+    gpa: 3.4,
   },
 ];
 
